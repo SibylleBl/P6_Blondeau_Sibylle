@@ -1,4 +1,7 @@
 const jsonWebToken = require("jsonwebtoken");
+const dotenv = require("dotenv");
+dotenv.config();
+console.log(process.env);
 
 //middleware qui permet d'extraire les infos du token afin de les transmettre aux autres middlewares:
 module.exports = (req, res, next) => {
@@ -8,7 +11,7 @@ module.exports = (req, res, next) => {
     const token = req.headers.authorization.split(" ")[1]; // je récupère le token qui se trouve en deuxième.
 
     // je décode le token:
-    const decodedToken = jsonWebToken.verify(token, "RAMDOM_TOKEN_SECRET");
+    const decodedToken = jsonWebToken.verify(token, process.env.SECRET_TOKEN);
 
     // je récupère le userId:
     const userId = decodedToken.userId;
