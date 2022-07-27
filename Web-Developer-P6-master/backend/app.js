@@ -12,10 +12,10 @@ const saucesRoutes = require("./routes/routeSauces.js");
 const userRoutes = require("./routes/routeUser.js");
 
 mongoose
-  .connect(
-    "mongodb+srv://SibylleBl:Rosiamto6@cluster0.7snx4ug.mongodb.net/?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
+  .connect(dotenv.mongoDBid, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à mongoDB échouée !"));
 
