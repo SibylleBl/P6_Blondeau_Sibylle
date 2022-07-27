@@ -48,7 +48,7 @@ exports.login = (req, res, next) => {
                 userId: user._id,
                 token: jsonWebToken.sign(
                   { userId: user._id },
-                  "RAMDOM_TOKEN_SECRET",
+                  "hv77869oiusfh48765slfufhiyh687ygiqdfu",
                   { expiresIn: "24h" }
                 ),
               });
