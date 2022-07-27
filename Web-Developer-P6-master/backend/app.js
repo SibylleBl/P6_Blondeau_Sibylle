@@ -4,15 +4,17 @@ const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
 const cors = require("cors");
-const dotenv = require("dotenv").config();
-console.log("🚀 ~ file: app.js ~ line 8 ~ dotenv", dotenv);
+const dotenv = require("dotenv");
+dotenv.config();
+
+console.log(process.env);
 
 //j'importe mes routes:
 const saucesRoutes = require("./routes/routeSauces.js");
 const userRoutes = require("./routes/routeUser.js");
 
 mongoose
-  .connect(dotenv.mongoDBid, {
+  .connect(process.env.MONGO_ID, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
