@@ -4,10 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
 const cors = require("cors");
-const dotenv = require("dotenv");
-dotenv.config();
-
-console.log(process.env);
+const env = require("dotenv").config();
 
 //j'importe mes routes:
 const saucesRoutes = require("./routes/routeSauces.js");

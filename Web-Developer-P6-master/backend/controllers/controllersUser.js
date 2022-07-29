@@ -1,8 +1,7 @@
 const bcrypt = require("bcrypt");
 const user = require("../models/user.js");
 const jsonWebToken = require("jsonwebtoken");
-const dotenv = require("dotenv");
-dotenv.config();
+const env = require("dotenv").config();
 
 exports.signup = (req, res, next) => {
   //Fonction qui permet de crypter un mot de passe le package bcrypt:
