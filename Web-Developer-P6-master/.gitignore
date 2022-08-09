@@ -9,6 +9,10 @@
 # password
 .env
 
+# images
+backend/images/*
+!backend/images/.keep
+
 # Node
 /node_modules
 npm-debug.log
