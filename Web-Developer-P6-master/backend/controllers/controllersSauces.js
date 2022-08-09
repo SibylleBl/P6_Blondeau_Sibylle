@@ -10,7 +10,7 @@ exports.createSauces = (req, res, next) => {
   delete sauceObject._id;
   // je supprime aussi le champs userId de la personne qui a créé l'objet car je ne veux pas faire confiance au client:
   delete sauceObject._userId;
-  console.log("ici");
+ 
   //j'utilise l'userId généré pas le token d'authentification:
   const sauce = new sauces({
     ...sauceObject,
@@ -22,13 +22,11 @@ exports.createSauces = (req, res, next) => {
     usersDisliked: [],
     usersLiked: [],
   });
-  console.log("ici2");
 
   // j'enregistre ce nouvel objet dans la base de données:
   sauce
     .save()
     .then(() => {
-      console.log("ici3");
       res.status(201).json({ message: "Objet enregistré !" });
     })
     .catch((error) => {
@@ -153,7 +151,7 @@ exports.likeSauce = (req, res, next) => {
       sauce
         .save()
         .then(() => {
-          res.status(200).json({ message: "Tableau mis à jour 666" });
+          res.status(200).json({ message: "Tableau mis à jour" });
         })
         .catch((error) => res.status(400).json({ error }));
     })
@@ -161,60 +159,3 @@ exports.likeSauce = (req, res, next) => {
       res.status(404).json({ error });
     });
 };
-
-// je définie les conditions en fonction de l'interaction de l'utilisateur:
-// la requête like dans la page:
-// switch (req.body.like) {
-//   case -1:
-//     //je vérifie si la sauce existe:
-//     sauces.findOne({ _id: req.params.id }),
-//       {
-//         // je récupère l'action de l'utilisateur et je la met dans l'array "disliked":
-//         userId: sauce.userId,
-//         like: -1,
-//       }
-//         .then(() => {
-//           res.status(201).json({ message: "Ok" });
-//         })
-//         .catch((error) => {
-//           res.status(400).json({ error });
-//         });
-//     break;
-//   case 0:
-//     //je vérifie si la sauce existe:
-//     sauces
-//       .findOne({ _id: req.params.id })
-//       .then((sauce) => {
-//         //si l'id utilisateur qui est dans le tableau "liked" est égal à celui qui interagis avec le like:
-//         if (sauce.userId == req.body.userId) {
-//           // alors je supprime l'utilisateur du tableau "liked":
-//         }
-//         //si l'id utilisateur qui est dans le tableau "disliked" est égal à celui qui interagis avec le like:
-//         if (sauce.userId == req.body.userId) {
-//           // alors je supprime l'utilisateur du tableau "disliked":
-//         }
-//       })
-
-//       .then(() => {
-//         res.status(201).json({ message: "Ok" });
-//       })
-//       .catch((error) => {
-//         res.status(400).json({ error });
-//       });
-//     break;
-//   case 1:
-//     //je vérifie si la sauce existe:
-//     sauces.findOne({ _id: req.params.id }),
-//       {
-//         // je récupère l'action de l'utilisateur et je la met dans l'array "liked":
-//         userId: sauce.userId,
-//         like: 1,
-//       }
-//         .then(() => {
-//           res.status(201).json({ message: "Ok" });
-//         })
-//         .catch((error) => {
-//           res.status(400).json({ error });
-//         });
-//     break;
-// }
