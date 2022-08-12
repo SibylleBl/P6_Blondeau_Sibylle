@@ -10,10 +10,11 @@ exports.createSauces = (req, res, next) => {
   delete sauceObject._id;
   // je supprime aussi le champs userId de la personne qui a créé l'objet car je ne veux pas faire confiance au client:
   delete sauceObject._userId;
- 
+
   //j'utilise l'userId généré pas le token d'authentification:
   const sauce = new sauces({
     ...sauceObject,
+    userId: req.auth.userId,
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
     }`,
